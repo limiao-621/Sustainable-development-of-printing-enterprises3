@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosefragebogen zur nachhaltigen Entwicklung von Druckunternehmen</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            margin-top: 30px;
+        }
+
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            text-align: left;
+            padding-left: 15px
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 10px;
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: normal;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        .answers {
+            margin-left: 20px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .answers input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .answers label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            padding: 6px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .answers label:hover {
+            background-color: #dcdde1;
+        }
+
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 0;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .results {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            margin-bottom: 30px;
+        }
+
+        .result-text {
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+
+        .result-text span {
+            color: #34495e;
+            font-weight: bold;
+        }
+
+
+        #radarChartContainer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #radarChart {
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <form id="surveyForm">
+
+        <body>
+            <h1>Diagnosefragebogen zur nachhaltigen Entwicklung von Druckunternehmen</h1>
+            <form id="surveyForm">
+                <div class="question">
+                    <h3>1. Fähigkeit zur technologischen Nachhaltigkeitsinnovation</h3>
+                    <label for="q1">Wie hoch ist der Anteil der jährlichen FuE-Ausgaben Ihres Unternehmens am
+                        Gesamtumsatz?</label>
+                    <div class="answers">
+                        <input type="radio" name="q1" value="A"> A. ≥8%<br>
+                        <input type="radio" name="q1" value="B"> B. 5%-7,9%<br>
+                        <input type="radio" name="q1" value="C"> C. 2%-4,9%<br>
+                        <input type="radio" name="q1" value="D"> D. <2%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q2">Wie viele neue Technologien, Produkte oder Patente hat Ihr Unternehmen im letzten
+                        Jahr
+                        entwickelt oder erhalten?</label>
+                    <div class="answers">
+                        <input type="radio" name="q2" value="A"> A. ≥5<br>
+                        <input type="radio" name="q2" value="B"> B. 3–4<br>
+                        <input type="radio" name="q2" value="C"> C. 1–2<br>
+                        <input type="radio" name="q2" value="D"> D. <1<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q3">Verfügt Ihr Unternehmen über eine eigene FuE-Abteilung, eine technologische
+                        Entwicklungsstrategie und Anreizsysteme?</label>
+                    <div class="answers">
+                        <input type="radio" name="q3" value="A"> A. Alle drei vorhanden<br>
+                        <input type="radio" name="q3" value="B"> B. Zwei vorhanden<br>
+                        <input type="radio" name="q3" value="C"> C. Nur eines vorhanden<br>
+                        <input type="radio" name="q3" value="D"> D. Keines vorhanden<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q4">Wie alt sind im Durchschnitt die wichtigsten Produktionsmaschinen Ihres
+                        Unternehmens?</label>
+                    <div class="answers">
+                        <input type="radio" name="q4" value="A"> A. ≤3 Jahre<br>
+                        <input type="radio" name="q4" value="B"> B. 4–5 Jahre<br>
+                        <input type="radio" name="q4" value="C"> C. 6–7 Jahre<br>
+                        <input type="radio" name="q4" value="D"> D. ≥8 Jahre<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>2. Finanzielle Stabilität und Kosteneffizienz</h3>
+                    <label for="q5">Wie hoch ist die Umsatzrendite Ihres Unternehmens?</label>
+                    <div class="answers">
+                        <input type="radio" name="q5" value="A"> A. >14,6%<br>
+                        <input type="radio" name="q5" value="B"> B. 9,2%–14,6%<br>
+                        <input type="radio" name="q5" value="C"> C. 3,8%–9,2%<br>
+                        <input type="radio" name="q5" value="D"> D. <3,8%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q6">Wie hoch ist der Ausschussanteil in Ihrer Produktion am
+                        Gesamtproduktionsvolumen?</label>
+                    <div class="answers">
+                        <input type="radio" name="q6" value="A"> A. ≤3%<br>
+                        <input type="radio" name="q6" value="B"> B. 3%–6%<br>
+                        <input type="radio" name="q6" value="C"> C. 6%–10%<br>
+                        <input type="radio" name="q6" value="D"> D. >10%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q7">Wie hoch ist der Anteil der Investitionen Ihres Unternehmens in Umweltmaßnahmen,
+                        Anlagenmodernisierung und Schulungen am Jahresumsatz?</label>
+                    <div class="answers">
+                        <input type="radio" name="q7" value="A"> A. ≥3%<br>
+                        <input type="radio" name="q7" value="B"> B. 1%-2,9%<br>
+                        <input type="radio" name="q7" value="C"> C. 0,5%-0,99%<br>
+                        <input type="radio" name="q7" value="D"> D. <0,5%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q8">Wie hoch ist die Eigenkapitalquote Ihres Unternehmens?</label>
+                    <div class="answers">
+                        <input type="radio" name="q8" value="A"> A. ≥47%<br>
+                        <input type="radio" name="q8" value="B"> B. 42%-46,9%<br>
+                        <input type="radio" name="q8" value="C"> C. 33,5%-41,9%<br>
+                        <input type="radio" name="q8" value="D"> D. <33,5%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>3. Marktwettbewerbsfähigkeit und Geschäftsmodelltransformation</h3>
+                    <label for="q9">Wie hoch ist der Anteil der Einnahmen aus neuen Geschäftsbereichen am Gesamtumsatz
+                        Ihres
+                        Unternehmens?</label>
+                    <div class="answers">
+                        <input type="radio" name="q9" value="A"> A. ≥30%<br>
+                        <input type="radio" name="q9" value="B"> B. 15%-29,9%<br>
+                        <input type="radio" name="q9" value="C"> C. 5%-14,9%<br>
+                        <input type="radio" name="q9" value="D"> D. <5%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q10">Wie ist der Marktanteil Ihres Unternehmens in Ihrer Region oder Ihrem
+                        Marktsegment?</label>
+                    <div class="answers">
+                        <input type="radio" name="q10" value="A"> A. Top 3<br>
+                        <input type="radio" name="q10" value="B"> B. Top 10<br>
+                        <input type="radio" name="q10" value="C"> C. Mittelfeld oder niedriger<br>
+                        <input type="radio" name="q10" value="D"> D. Sehr geringer Marktanteil<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q11">Verfügt Ihr Unternehmen über Umweltzertifikate wie Umweltzeichen, ISO9001, ISO14001
+                        etc.?</label>
+                    <div class="answers">
+                        <input type="radio" name="q11" value="A"> A. Mehrere Zertifikate<br>
+                        <input type="radio" name="q11" value="B"> B. 1–2 Zertifikate<br>
+                        <input type="radio" name="q11" value="C"> C. Nur grundlegende Betriebslizenz<br>
+                        <input type="radio" name="q11" value="D"> D. Keine Zertifikate<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q12">Wie bewerten Sie die Kundenbindung und -loyalität Ihres Unternehmens
+                        insgesamt?</label>
+                    <div class="answers">
+                        <input type="radio" name="q12" value="A"> A. Exzellent (hohe Zufriedenheit, geringe Abwanderung,
+                        hohe
+                        Wiederkaufsrate, Empfehlungsrate ≥98%)<br>
+                        <input type="radio" name="q12" value="B"> B. Gut (Zufriedenheit hoch, mittlere Abwanderung, gute
+                        Wiederkaufsrate, ≥95%)<br>
+                        <input type="radio" name="q12" value="C"> C. Durchschnittlich (mittlere Zufriedenheit, hohe
+                        Abwanderung,
+                        ≥90%)<br>
+                        <input type="radio" name="q12" value="D"> D. Schwach (<85%, geringe Zufriedenheit, hohe
+                            Abwanderung)<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>4. Qualitätsmanagement und Kundenwert</h3>
+                    <label for="q13">Wie hoch ist der Anteil von Produkten, die jährlich wegen Qualitätsmängeln
+                        verschrottet
+                        werden?</label>
+                    <div class="answers">
+                        <input type="radio" name="q13" value="A"> A. <0,75%<br>
+                            <input type="radio" name="q13" value="B"> B. 0,75%–1,5%<br>
+                            <input type="radio" name="q13" value="C"> C. 1,5%–3,0%<br>
+                            <input type="radio" name="q13" value="D"> D. ≥3,0%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q14">Können Ihre Aufträge termingerecht geliefert werden?</label>
+                    <div class="answers">
+                        <input type="radio" name="q14" value="A"> A. Fast alle Aufträge pünktlich<br>
+                        <input type="radio" name="q14" value="B"> B. Mehrheit pünktlich<br>
+                        <input type="radio" name="q14" value="C"> C. Verzögerungen üblich<br>
+                        <input type="radio" name="q14" value="D"> D. Häufig verspätet<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q15">Verfügt Ihr Unternehmen über ein vollständiges Qualitätsmanagementsystem (z. B.
+                        ISO9001)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q15" value="A"> A. Vollständig und effektiv<br>
+                        <input type="radio" name="q15" value="B"> B. Vorhanden, aber nicht vollständig implementiert<br>
+                        <input type="radio" name="q15" value="C"> C. Unzureichend geregelt<br>
+                        <input type="radio" name="q15" value="D"> D. Kein QM-System vorhanden<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q16">Wie hoch sind die externen Qualitätskosten in Prozent des
+                        Gesamtproduktionswerts?</label>
+                    <div class="answers">
+                        <input type="radio" name="q16" value="A"> A. <0,5% (exzellent)<br>
+                            <input type="radio" name="q16" value="B"> B. 0,5%–1,0% (gut)<br>
+                            <input type="radio" name="q16" value="C"> C. 1,0%–2,3% (durchschnittlich)<br>
+                            <input type="radio" name="q16" value="D"> D. ≥2,3% (schwach)<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>1. Mitarbeiterbindung und Personalfluktuation</h3>
+                    <label for="q17">Wie hoch ist die jährliche Fluktuationsrate Ihrer Mitarbeitenden?</label>
+                    <div class="answers">
+                        <input type="radio" name="q17" value="A"> A. ≤10%<br>
+                        <input type="radio" name="q17" value="B"> B. 10%–15%<br>
+                        <input type="radio" name="q17" value="C"> C. 15%–20%<br>
+                        <input type="radio" name="q17" value="D"> D. >20%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q18">Verfügt Ihr Unternehmen über ein Nachfolge- und Talententwicklungsprogramm für
+                        Schlüsselpositionen?</label>
+                    <div class="answers">
+                        <input type="radio" name="q18" value="A"> A. Vollständig<br>
+                        <input type="radio" name="q18" value="B"> B. Teilweise vorhanden<br>
+                        <input type="radio" name="q18" value="C"> C. Nur Notfallpläne<br>
+                        <input type="radio" name="q18" value="D"> D. Nicht vorhanden<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q19">Wie lang ist die durchschnittliche Betriebszugehörigkeit der
+                        Mitarbeitenden?</label>
+                    <div class="answers">
+                        <input type="radio" name="q19" value="A"> A. >10 Jahre<br>
+                        <input type="radio" name="q19" value="B"> B. 5–10 Jahre<br>
+                        <input type="radio" name="q19" value="C"> C. 3–4,9 Jahre<br>
+                        <input type="radio" name="q19" value="D"> D. <3 Jahre<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q20">Wie schnell kann Ihr Unternehmen Schlüsselpositionen im Falle einer Vakanz
+                        besetzen?</label>
+                    <div class="answers">
+                        <input type="radio" name="q20" value="A"> A. ≤15 Tage<br>
+                        <input type="radio" name="q20" value="B"> B. 16–30 Tage<br>
+                        <input type="radio" name="q20" value="C"> C. 31–45 Tage<br>
+                        <input type="radio" name="q20" value="D"> D. >45 Tage<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>2. Weiterbildung und Kompetenzentwicklung</h3>
+                    <label for="q21">Wie hoch ist der Anteil der Weiterbildungsausgaben am
+                        Gesamtpersonalaufwand?</label>
+                    <div class="answers">
+                        <input type="radio" name="q21" value="A"> A. >5%<br>
+                        <input type="radio" name="q21" value="B"> B. 3%–5%<br>
+                        <input type="radio" name="q21" value="C"> C. 1%–2,9%<br>
+                        <input type="radio" name="q21" value="D"> D. <1%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q22">Wie viele Schulungsstunden absolvieren die Mitarbeitenden jährlich
+                        durchschnittlich?</label>
+                    <div class="answers">
+                        <input type="radio" name="q22" value="A"> A. ≥40 Stunden<br>
+                        <input type="radio" name="q22" value="B"> B. 20–39 Stunden<br>
+                        <input type="radio" name="q22" value="C"> C. 10–19 Stunden<br>
+                        <input type="radio" name="q22" value="D"> D. <10 Stunden<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q23">Verfügt Ihr Unternehmen über ein System zur Kompetenzbewertung der
+                        Mitarbeitenden?</label>
+                    <div class="answers">
+                        <input type="radio" name="q23" value="A"> A. Vollständig implementiert<br>
+                        <input type="radio" name="q23" value="B"> B. Teilweise implementiert<br>
+                        <input type="radio" name="q23" value="C"> C. Periodisch manuell bewertet<br>
+                        <input type="radio" name="q23" value="D"> D. Kein System vorhanden<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q24">Wie hoch ist der Anteil der Mitarbeitenden, die mehrere Funktionen ausüben
+                        können?</label>
+                    <div class="answers">
+                        <input type="radio" name="q24" value="A"> A. ≥70%<br>
+                        <input type="radio" name="q24" value="B"> B. 50%–69%<br>
+                        <input type="radio" name="q24" value="C"> C. 30%–49%<br>
+                        <input type="radio" name="q24" value="D"> D. <30%<br>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>3. Arbeitsumfeld und Arbeitssicherheit</h3>
+                    <label for="q25">Wie viele Arbeitsunfälle ereigneten sich in Ihrem Unternehmen in den letzten drei
+                        Jahren? Bestehen
+                        Analyse- und Verbesserungsmechanismen?</label>
+                    <div class="answers">
+                        <input type="radio" name="q25" value="A"> A. Keine schweren Unfälle, Rückgang leichter Unfälle,
+                        funktionierende
+                        Präventionssysteme<br>
+                        <input type="radio" name="q25" value="B"> B. Vereinzelte leichte Unfälle, umgehende Maßnahmen,
+                        vollständige
+                        Dokumentation<br>
+                        <input type="radio" name="q25" value="C"> C. Mehrere Unfälle, keine systematische
+                        Verbesserung<br>
+                        <input type="radio" name="q25" value="D"> D. Häufige Unfälle, fehlende Schulung und
+                        Frühwarnsysteme<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q26">Erhalten alle Mitarbeitenden jährliche Sicherheitsunterweisungen, einschließlich
+                        Schulung vor
+                        Arbeitsaufnahme?</label>
+                    <div class="answers">
+                        <input type="radio" name="q26" value="A"> A. 100% geschult, mit archivierten Nachweisen<br>
+                        <input type="radio" name="q26" value="D"> D. Nicht alle geschult oder kein Schulungsplan
+                        vorhanden<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q27">Verfügt Ihr Unternehmen über angemessene Arbeitsschutzvorrichtungen (z. B.
+                        Belüftung,
+                        Schutzkleidung)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q27" value="A"> A. Vollständige Abdeckung<br>
+                        <input type="radio" name="q27" value="B"> B. Hauptarbeitsplätze abgedeckt<br>
+                        <input type="radio" name="q27" value="C"> C. Teilweise Abdeckung<br>
+                        <input type="radio" name="q27" value="D"> D. Keine Abdeckung<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q28">Besteht ein systematisches Arbeitssicherheitsmanagement (z. B. ISO 45001,
+                        Sicherheitsbeauftragte)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q28" value="A"> A. Vollständig implementiert, mit Audit- und
+                        Verbesserungsprotokollen<br>
+                        <input type="radio" name="q28" value="D"> D. Kein System vorhanden oder nur ad hoc Maßnahmen<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>4. Gesellschaftliche Verantwortung und Gemeinschaftseinfluss</h3>
+                    <label for="q29">Gab es in den letzten fünf Jahren Gesetzesverstöße bzgl. Umwelt, Arbeitsrecht,
+                        Produktsicherheit?</label>
+                    <div class="answers">
+                        <input type="radio" name="q29" value="A"> A. Keine Verstöße<br>
+                        <input type="radio" name="q29" value="B"> B. Leichte Verstöße, sofortige Korrektur<br>
+                        <input type="radio" name="q29" value="C"> C. Wiederholte Verstöße, schwankende Konformität<br>
+                        <input type="radio" name="q29" value="D"> D. Schwere Gesetzesverstöße (z. B. Umweltkatastrophen,
+                        Betrug)<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q30">Verfügen Ihre Hauptlieferanten über Nachhaltigkeitszertifikate (z. B. FSC, PEFC,
+                        Sojatinte)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q30" value="A"> A. ≥80% zertifiziert<br>
+                        <input type="radio" name="q30" value="B"> B. 50–79%, mit Auswahlkriterien<br>
+                        <input type="radio" name="q30" value="C"> C. 20–49%, ohne klares System<br>
+                        <input type="radio" name="q30" value="D"> D. <20%, hauptsächlich konventionelle Anbieter<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q31">Wie häufig engagiert sich Ihr Unternehmen in gemeinnützigen Projekten (z. B.
+                        Bildung,
+                        Notfallhilfe)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q31" value="A"> A. ≥2 Aktionen/Jahr oder ≥1% des Gewinns<br>
+                        <input type="radio" name="q31" value="B"> B. ≥1 Aktion/Jahr, mittlerer Aufwand<br>
+                        <input type="radio" name="q31" value="C"> C. Gelegentliche Teilnahme<br>
+                        <input type="radio" name="q31" value="D"> D. Keine Teilnahme<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q32">Identifizieren sich Ihre Mitarbeitenden mit der gesellschaftlichen Verantwortung
+                        des
+                        Unternehmens?</label>
+                    <div class="answers">
+                        <input type="radio" name="q32" value="A"> A. ≥80% zeigen starke Identifikation<br>
+                        <input type="radio" name="q32" value="B"> B. 60–79%, moderate Zustimmung<br>
+                        <input type="radio" name="q32" value="C"> C. 40–59%, gemischte Rückmeldung<br>
+                        <input type="radio" name="q32" value="D"> D. <40%, überwiegend ablehnend<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>1. Saubere Produktion und grüne Technologie</h3>
+                    <label for="q33">Welcher Anteil der im Produktionsprozess verwendeten Materialien ist
+                        umweltzertifiziert oder
+                        emissionsarm (z. B. FSC-Papier, Sojatinte)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q33" value="A"> A. ≥80%<br>
+                        <input type="radio" name="q33" value="B"> B. 60–79%<br>
+                        <input type="radio" name="q33" value="C"> C. 30–59%<br>
+                        <input type="radio" name="q33" value="D"> D. <30%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q34">Setzt Ihr Unternehmen in der Produktion energieeffiziente und umweltfreundliche
+                        Maschinen
+                        ein?</label>
+                    <div class="answers">
+                        <input type="radio" name="q34" value="A"> A. Überwiegend<br>
+                        <input type="radio" name="q34" value="B"> B. Teilweise<br>
+                        <input type="radio" name="q34" value="C"> C. Selten<br>
+                        <input type="radio" name="q34" value="D"> D. Nie<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q35">Wie häufig wurden in den letzten fünf Jahren umweltfreundliche Geräte ersetzt oder
+                        nachgerüstet?</label>
+                    <div class="answers">
+                        <input type="radio" name="q35" value="A"> A. ≥3x/5 Jahre<br>
+                        <input type="radio" name="q35" value="B"> B. 2x/5 Jahre<br>
+                        <input type="radio" name="q35" value="C"> C. 1x/5 Jahre<br>
+                        <input type="radio" name="q35" value="D"> D. Nie<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q36">Verfügt Ihr Unternehmen über Umweltzertifikate wie "Green Printing",
+                        Umweltprüfberichte oder
+                        Listung als "Grüne Fabrik"?</label>
+                    <div class="answers">
+                        <input type="radio" name="q36" value="A"> A. Nationale Zertifikate<br>
+                        <input type="radio" name="q36" value="B"> B. Regionale Prüfberichte<br>
+                        <input type="radio" name="q36" value="C"> C. In Vorbereitung<br>
+                        <input type="radio" name="q36" value="D"> D. Keine Zertifizierung<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>2. Ressourceneffizienz und Umweltleistung</h3>
+                    <label for="q37">Wie hoch ist die Ausnutzungsrate der Papierfläche beim Druck?</label>
+                    <div class="answers">
+                        <input type="radio" name="q37" value="A"> A. ≥92%<br>
+                        <input type="radio" name="q37" value="B"> B. 88%–91,9%<br>
+                        <input type="radio" name="q37" value="C"> C. 82%–87,9%<br>
+                        <input type="radio" name="q37" value="D"> D. <82%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q38">Wie hoch ist der Energieverbrauch je 10.000 € Produktionswert (in t SKE)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q38" value="A"> A. ≤0,05 t<br>
+                        <input type="radio" name="q38" value="B"> B. ≤0,08 t<br>
+                        <input type="radio" name="q38" value="C"> C. ≤0,15 t<br>
+                        <input type="radio" name="q38" value="D"> D. >0,15 t<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q39">Wie hoch ist der Farbverbrauch je 10.000 € Produktionswert (in kg)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q39" value="A"> A. ≤3,00 kg<br>
+                        <input type="radio" name="q39" value="B"> B. 3,01–5,00 kg<br>
+                        <input type="radio" name="q39" value="C"> C. 5,01–10,00 kg<br>
+                        <input type="radio" name="q39" value="D"> D. >10,00 kg<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q40">Wie hoch ist der Wasserverbrauch pro Produktionseinheit (in t/10.000 €)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q40" value="A"> A. ≤0,5 t<br>
+                        <input type="radio" name="q40" value="B"> B. 0,51–1,00 t<br>
+                        <input type="radio" name="q40" value="C"> C. 1,01–2,00 t<br>
+                        <input type="radio" name="q40" value="D"> D. >2,00 t<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>3. Emissionskontrolle und Abfallmanagement</h3>
+                    <label for="q41">Wie hoch ist der VOC-Ausstoß pro 10.000 € Produktionswert (in kg)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q41" value="A"> A. ≤0,4 kg<br>
+                        <input type="radio" name="q41" value="B"> B. 0,41–0,6 kg<br>
+                        <input type="radio" name="q41" value="C"> C. 0,61–1,0 kg<br>
+                        <input type="radio" name="q41" value="D"> D. >1,0 kg<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q42">Werden gefährliche Abfälle (z. B. Altfarben, Lösungsmittel) erfasst und
+                        gesetzeskonform
+                        entsorgt?</label>
+                    <div class="answers">
+                        <input type="radio" name="q42" value="A"> A. Vollständig dokumentiert, zertifizierte
+                        Entsorgung<br>
+                        <input type="radio" name="q42" value="B"> B. Regeln vorhanden, aber gelegentliche Mängel<br>
+                        <input type="radio" name="q42" value="C"> C. Teilweise ohne Nachweise<br>
+                        <input type="radio" name="q42" value="D"> D. Keine Regelung, unkontrollierte Entsorgung<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q43">Werden Abwässer regelmäßig kontrolliert und vorgereinigt?</label>
+                    <div class="answers">
+                        <input type="radio" name="q43" value="A"> A. Kontinuierlich unter Grenzwerten, mit
+                        Monitoring<br>
+                        <input type="radio" name="q43" value="B"> B. Behandlung vorhanden, keine Überschreitungen<br>
+                        <input type="radio" name="q43" value="C"> C. Keine Echtzeitüberwachung, gelegentliche
+                        Überschreitungen<br>
+                        <input type="radio" name="q43" value="D"> D. Keine Behandlung, regelmäßige Verstöße<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q44">Gab es in den letzten fünf Jahren Umweltvorfälle oder Beschwerden gegen Ihr
+                        Unternehmen?</label>
+                    <div class="answers">
+                        <input type="radio" name="q44" value="A"> A. Keine Vorfälle<br>
+                        <input type="radio" name="q44" value="B"> B. Kleinere Überschreitungen, umgehend behoben<br>
+                        <input type="radio" name="q44" value="C"> C. Einzelne schwere Vorfälle mit Folgen<br>
+                        <input type="radio" name="q44" value="D"> D. Wiederholt schwerwiegende Umweltverstöße<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <h3>4. Langfristige ökologische Wirkung und CO₂-Management</h3>
+                    <label for="q45">Wie hoch ist der CO₂-Ausstoß Ihres Unternehmens pro 10.000 €
+                        Produktionswert?</label>
+                    <div class="answers">
+                        <input type="radio" name="q45" value="A"> A. ≤0,20 t CO₂e<br>
+                        <input type="radio" name="q45" value="B"> B. 0,21–0,30 t CO₂e<br>
+                        <input type="radio" name="q45" value="C"> C. 0,31–0,50 t CO₂e<br>
+                        <input type="radio" name="q45" value="D"> D. >0,50 t CO₂e<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q46">Wie hoch ist der Anteil erneuerbarer Energien (z. B. Ökostrom, Gas, Wärmepumpen) in
+                        Ihrem
+                        Energiemix?</label>
+                    <div class="answers">
+                        <input type="radio" name="q46" value="A"> A. ≥50%<br>
+                        <input type="radio" name="q46" value="B"> B. 30%–49%<br>
+                        <input type="radio" name="q46" value="C"> C. 10%–29%<br>
+                        <input type="radio" name="q46" value="D"> D. <10%<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q47">Hat Ihr Unternehmen Maßnahmen zur Emissionsreduzierung umgesetzt (z. B.
+                        CO₂-Bilanzierung,
+                        Zertifikate)?</label>
+                    <div class="answers">
+                        <input type="radio" name="q47" value="A"> A. Umfassend implementiert<br>
+                        <input type="radio" name="q47" value="B"> B. Teilweise umgesetzt<br>
+                        <input type="radio" name="q47" value="C"> C. Nur vereinzelt aktiv<br>
+                        <input type="radio" name="q47" value="D"> D. Keine Maßnahmen<br>
+                    </div>
+                </div>
+                <div class="question">
+                    <label for="q48">Hat Ihr Unternehmen Umweltziele (z. B. CO₂-Neutralität) definiert und verfolgt
+                        deren
+                        Umsetzung?</label>
+                    <div class="answers">
+                        <input type="radio" name="q48" value="A"> A. Ziele definiert und öffentlich kommuniziert<br>
+                        <input type="radio" name="q48" value="B"> B. Ziele vorhanden, aber intern<br>
+                        <input type="radio" name="q48" value="C"> C. Gelegentliche Maßnahmen ohne Plan<br>
+                        <input type="radio" name="q48" value="D"> D. Keine Zielsetzung<br>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <button type="button" onclick="submitSurvey()">Fragebogen absenden</button>
+                </div>
+
+                <div class="results" id="results">
+                    <h3>Umfrageergebnisse</h3>
+                    <div class="result-text" id="totalAverage">Gesamtdurchschnitt: 0</div>
+                    <div class="result-text" id="economicAverage">Wirtschaftliche Dimension: 0</div>
+                    <div class="result-text" id="socialAverage">Soziale Dimension: 0</div>
+                    <div class="result-text" id="environmentalAverage">Ökonomische Dimension: 0</div>
+                </div>
+                <div class="results" id="radarChartContainer" style="display:none;">
+                    <h3>Radar-Diagramm zur Nachhaltigkeitsbewertung</h3>
+                    <canvas id="radarChart" width="400" height="400"></canvas>
+                </div>
+            </form>
+
+            <script>
+                // 每个选项的得分映射
+                const scoreMap = { A: 100, B: 80, C: 60, D: 40 };
+                let radarChartInstance = null;
+                // 维度权重
+                const dimensionWeights = {
+                    economic: 0.45, // 经济维度
+                    social: 0.30,   // 社会维度
+                    environmental: 0.25 // 环境维度
+                };
+                // 经济维度的核心能力项权重
+                const economicCapabilities = {
+                    innovation: 0.12, // 技术可持续创新能力
+                    financial: 0.10,  // 财务稳健与成本控制能力
+                    market: 0.13,     // 市场适应与业务模式创新能力
+                    quality: 0.10     // 质量管理与客户价值创造能力
+                };
+
+
+                // 社会维度的核心能力项权重
+                const socialCapabilities = {
+                    stability: 0.08, // 员工稳定性与人才吸引能力
+                    training: 0.07,  // 员工技能提升与培训能力
+                    safety: 0.09,    // 员工健康与安全管理能力
+                    responsibility: 0.06 // 社会责任履行能力
+
+                };
+                // 环境维度的核心能力项权重
+                const environmentalCapabilities = {
+                    greenTech: 0.08,  // 清洁生产工艺与绿色技术应用
+                    efficiency: 0.07, // 资源利用效率与绿色运营绩效
+                    pollution: 0.06,  // 污染控制与废弃物管理
+                    carbon: 0.04      // 长期生态影响与碳排放管理
+                };
+
+                function calculateScore() {
+                    let totalScore = 0;
+                    let economicScore = 0, socialScore = 0, environmentalScore = 0;
+
+                    // 核心能力项得分
+                    let innovationScore = 0, financialScore = 0, marketScore = 0, qualityScore = 0;
+                    let stabilityScore = 0, trainingScore = 0, safetyScore = 0, responsibilityScore = 0;
+                    let greenTechScore = 0, efficiencyScore = 0, pollutionScore = 0, carbonScore = 0;
+
+                    const formData = new FormData(document.getElementById('surveyForm'));
+
+                    formData.forEach((value, key) => {
+                        const questionNumber = parseInt(key.replace('q', ''));
+                        const score = scoreMap[value] || 0;
+
+                        // 根据问题编号分配到核心能力项
+                        if (questionNumber >= 1 && questionNumber <= 4) {
+                            innovationScore += score; // 技术创新能力
+                        } else if (questionNumber >= 5 && questionNumber <= 8) {
+                            financialScore += score; // 财务稳健能力
+                        } else if (questionNumber >= 9 && questionNumber <= 12) {
+                            marketScore += score; // 市场适应能力
+                        } else if (questionNumber >= 13 && questionNumber <= 16) {
+                            qualityScore += score; // 质量管理能力
+                        }
+                        // 社会维度问题分配
+                        else if (questionNumber >= 17 && questionNumber <= 20) {
+                            stabilityScore += score; // 员工稳定性与人才吸引能力
+                        } else if (questionNumber >= 21 && questionNumber <= 24) {
+                            trainingScore += score; // 员工技能提升与培训能力
+                        } else if (questionNumber >= 25 && questionNumber <= 28) {
+                            safetyScore += score; // 员工健康与安全管理能力
+                        } else if (questionNumber >= 29 && questionNumber <= 32) {
+                            responsibilityScore += score; // 社会责任履行能力
+                        }
+                        // 环境维度问题分配
+                        else if (questionNumber >= 33 && questionNumber <= 36) {
+                            greenTechScore += score; // 绿色技术应用
+                        } else if (questionNumber >= 37 && questionNumber <= 40) {
+                            efficiencyScore += score; // 资源利用效率
+                        } else if (questionNumber >= 41 && questionNumber <= 44) {
+                            pollutionScore += score; // 污染控制
+                        } else if (questionNumber >= 45 && questionNumber <= 48) {
+                            carbonScore += score; // 碳排放管理
+                        }
+
+                        totalScore += score; // 累加所有问题的得分
+                    });
+
+                    // 计算能力项得分（每个能力项的得分 = 问题平均分 × 该能力项权重）
+                    const weightedInnovationScore = (innovationScore / 4) * economicCapabilities.innovation; // 技术可持续创新
+                    const weightedFinancialScore = (financialScore / 4) * economicCapabilities.financial; // 财务稳健性
+                    const weightedMarketScore = (marketScore / 4) * economicCapabilities.market; // 市场适应性
+                    const weightedQualityScore = (qualityScore / 4) * economicCapabilities.quality; // 质量管理
+
+                    const weightedStabilityScore = (stabilityScore / 4) * socialCapabilities.stability; // 员工稳定性
+                    const weightedTrainingScore = (trainingScore / 4) * socialCapabilities.training; // 员工技能提升
+                    const weightedSafetyScore = (safetyScore / 4) * socialCapabilities.safety; // 员工健康与安全
+                    const weightedResponsibilityScore = (responsibilityScore / 4) * socialCapabilities.responsibility; // 社会责任
+
+                    const weightedGreenTechScore = (greenTechScore / 4) * environmentalCapabilities.greenTech; // 绿色技术
+                    const weightedEfficiencyScore = (efficiencyScore / 4) * environmentalCapabilities.efficiency; // 资源利用效率
+                    const weightedPollutionScore = (pollutionScore / 4) * environmentalCapabilities.pollution; // 污染控制
+                    const weightedCarbonScore = (carbonScore / 4) * environmentalCapabilities.carbon; // 碳排放管理
+
+                    // 计算维度得分（将各能力项得分相加，不需要再乘以维度权重）
+                    economicScore = weightedInnovationScore + weightedFinancialScore + weightedMarketScore + weightedQualityScore;
+                    socialScore = weightedStabilityScore + weightedTrainingScore + weightedSafetyScore + weightedResponsibilityScore;
+                    environmentalScore = weightedGreenTechScore + weightedEfficiencyScore + weightedPollutionScore + weightedCarbonScore;
+
+                    // 计算总得分（各维度得分加总）
+                    const averages = {
+                        total: totalScore / 48, // 总题数
+                        economic: economicScore,
+                        social: socialScore,
+                        environmental: environmentalScore
+                    };
+
+                    return {
+                        total: (averages.economic + averages.social + averages.environmental),
+                        economic: averages.economic,
+                        social: averages.social,
+                        environmental: averages.environmental
+                    };
+                }
+
+
+                function submitSurvey() {
+                    const form = document.getElementById('surveyForm');
+                    const totalQuestions = 48;
+                    let answeredCount = 0;
+
+                    // 统计已选择的题目数量
+                    for (let i = 1; i <= totalQuestions; i++) {
+                        if (form.querySelector(`input[name="q${i}"]:checked`)) {
+                            answeredCount++;
+                        }
+                    }
+
+                    // 如果未完成全部题目，弹出提示并中止提交
+                    if (answeredCount < totalQuestions) {
+                        alert(`Es gibt noch  ${totalQuestions - answeredCount} Fragen, die Sie nicht beantwortet haben. Bitte beantworten Sie alle Fragen, bevor Sie absenden.`);
+                        return;
+                    }
+
+                    // 以下为原始评分逻辑
+                    const { total, economic, social, environmental } = calculateScore();
+
+                    // 显示得分
+                    document.getElementById('totalAverage').textContent = `Gesamtdurchschnitt: ${total.toFixed(0)}`;
+                    document.getElementById('economicAverage').textContent = `Wirtschaftliche Dimension:${economic.toFixed(0)}`;
+                    document.getElementById('socialAverage').textContent = `Soziale Dimension: ${social.toFixed(0)}`;
+                    document.getElementById('environmentalAverage').textContent = `Ökonomische Dimension: ${environmental.toFixed(0)}`;
+
+                    // 显示结果区块
+                    document.getElementById('results').style.display = 'block';
+                    document.getElementById('radarChartContainer').style.display = 'block';
+
+                    // 数据归一化为百分比（满分经济45，社会30，环境25）
+                    const economicPercent = economic / 45 * 100;
+                    const socialPercent = social / 30 * 100;
+                    const environmentalPercent = environmental / 25 * 100;
+
+                    drawRadarChart(economicPercent, socialPercent, environmentalPercent);
+                }
+
+                function drawRadarChart(economic, social, environmental) {
+                    const ctx = document.getElementById('radarChart').getContext('2d');
+                    if (radarChartInstance) radarChartInstance.destroy();
+                    radarChartInstance = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Wirtschaftliche Dimension', 'Soziale Dimension', 'Ökonomische Dimension'],
+                            datasets: [{
+                                label: 'Bewertung der Punktzahl',
+                                data: [economic, social, environmental],
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                pointBackgroundColor: 'rgba(75, 192, 192, 1)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                r: {
+                                    suggestedMin: 0,
+                                    suggestedMax: 100
+                                }
+                            }
+                        }
+                    });
+                }
+
+            </script>
+        </body>
